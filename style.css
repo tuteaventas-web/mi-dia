@@ -67,4 +67,8 @@
 
 @media(max-width:800px){#account-name{display:none}.header-actions{overflow-x:auto}.header-actions button{white-space:nowrap}}
 @media(max-width:600px){.login-card{padding:24px 20px}.pin-fields{gap:8px}.pin-fields input{width:50px;height:56px}.header-actions #backup,.header-actions #projects{display:none}#accounts{font-size:0}#accounts:after{content:'Cuentas';font-size:10px}#logout{font-size:0}#logout:after{content:'Salir';font-size:10px}}
+
+/* Lectura un poco más cómoda */
+:root{font-size:15px}.muted{font-size:13px}nav button{font-size:13px}.task-title{font-size:14px}.task-meta,.help{font-size:11px}.toolbar input,.toolbar button,#view-controls{font-size:13px}.daily-bottom,#weekly-summary{font-size:12px}.login-card>label{font-size:13px}
+.area-tag{font-weight:700;padding:3px 8px;border-radius:999px;line-height:1.2}.area-comercial{color:#17633f;background:#dff4e7}.area-operativo{color:#185f91;background:#e0f0fb}.area-administrativo{color:#7a5a08;background:#fff1b8}.area-gerencia{color:#9a4b0b;background:#ffe5cc}
 @media(max-width:600px){#drag-destinations{padding:8px;gap:4px;bottom:12px}#drag-destinations button{font-size:9px}}
