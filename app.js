@@ -10,7 +10,7 @@ let cloudOnline=false,cloudToken=sessionStorage.getItem(CLOUD_TOKEN)||'',localRe
 try{registry=await cloudAccounts();cloudOnline=true;}catch{}
 async function requireLogin(){
   const session=sessionStorage.getItem(SESSION_KEY),saved=registry.accounts.find(a=>a.id===session);
-  if(saved){document.body.classList.remove('auth-pending');$('#login-screen').hidden=true;return saved;}
+  if(saved&&(!cloudOnline||cloudToken)){document.body.classList.remove('auth-pending');$('#login-screen').hidden=true;return saved;}
   const screen=$('#login-screen'),form=$('#login-form'),select=$('#login-user'),fields=[...document.querySelectorAll('.pin-fields input')],error=$('#login-error');
   select.innerHTML='<option value="">Selecciona un usuario</option>'+[...registry.accounts].sort((a,b)=>a.order-b.order||a.name.localeCompare(b.name)).map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
   screen.hidden=false;document.body.classList.add('auth-pending');
