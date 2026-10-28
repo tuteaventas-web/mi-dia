@@ -7,6 +7,7 @@ import {ACCOUNTS_KEY,SESSION_KEY,accountDataKey,ensureRegistry,hashPin,makeAccou
 import {CLOUD_TOKEN,cloudAccounts,cloudLogin,cloudData,cloudSave,cloudMigrate,cloudUpsert,cloudDelete} from './cloud.js?v=20261028.20';
 import {ensurePurchases,renderPurchases} from './purchases.js?v=20261028.24';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const projectsInline=document.createElement('button');projectsInline.id='projects-inline';projectsInline.className='projects-inline';projectsInline.textContent='▦ Proyectos';projectsInline.hidden=true;projectsInline.onclick=()=>projectDialog();$('#new-task').before(projectsInline);
 let cloudOnline=false,cloudToken=sessionStorage.getItem(CLOUD_TOKEN)||'',localRegistry=await ensureRegistry(localStorage),cloudRegistry=null,registry=localRegistry;
 try{cloudRegistry=await cloudAccounts();const merged=[...cloudRegistry.accounts];for(const local of localRegistry.accounts)if(!merged.some(a=>a.id===local.id))merged.push(local);registry={version:1,accounts:merged};cloudOnline=true;}catch{}
 async function requireLogin(){
@@ -46,6 +47,7 @@ $('#view-controls').innerHTML=view==='week'?`<label>Semana del <input id="week-c
 renderList();if(storageError){$('#save-status').textContent=storageError;} }
 function renderFilters(){const open=!$('#filters').hidden;$('#filter-toggle').setAttribute('aria-expanded',String(open));$('#filters').innerHTML=['priority','area','state','project'].map((k,i)=>`<label>${['Prioridad','Área','Estado','Proyecto'][i]}<select data-filter="${k}">${options([PRIORITIES,AREAS,STATES,data.projects.map(p=>[p.id,p.name])][i],filters[k],'Todos')}</select></label>`).join('')+`<label>${view==='done'?'Finalización desde':'Fecha límite / planificación desde'}<input type="date" data-filter="from" value="${filters.from}"></label><label>Hasta<input type="date" data-filter="to" value="${filters.to}"></label><button id="clear-filters">Limpiar filtros</button>`;}
 function renderList(){
+  $('#projects-inline').hidden=view!=='week';
   if(view==='purchases'){renderPurchases($('#task-list'),data,{commit,show,close,toast,esc,today,uid});return;}
   if(view==='week'){renderWeeklyProjects();return;}
   const base=data.tasks.filter(t=>belongs(t,view)),list=base.filter(matches).sort((a,b)=>PRIORITIES.indexOf(a.priority)-PRIORITIES.indexOf(b.priority)||a.order-b.order||a.created.localeCompare(b.created));
