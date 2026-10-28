@@ -70,5 +70,6 @@
 
 /* Lectura un poco más cómoda */
 :root{font-size:15px}.muted{font-size:13px}nav button{font-size:13px}.task-title{font-size:14px}.task-meta,.help{font-size:11px}.toolbar input,.toolbar button,#view-controls{font-size:13px}.daily-bottom,#weekly-summary{font-size:12px}.login-card>label{font-size:13px}
-.area-tag{font-weight:700;padding:3px 8px;border-radius:999px;line-height:1.2}.area-comercial{color:#17633f;background:#dff4e7}.area-operativo{color:#185f91;background:#e0f0fb}.area-administrativo{color:#7a5a08;background:#fff1b8}.area-gerencia{color:#9a4b0b;background:#ffe5cc}
+.area-tag{font-size:9px;font-weight:600;padding:4px 7px;border-radius:5px;line-height:1;white-space:nowrap}.area-comercial{color:#17633f;background:#dff4e7}.area-operativo{color:#185f91;background:#e0f0fb}.area-administrativo{color:#7a5a08;background:#fff1b8}.area-gerencia{color:#9a4b0b;background:#ffe5cc}
+.modal-heading h2{font-size:19px}.form-grid label{font-size:13px}.form-grid input,.form-grid select,.form-grid textarea{font-size:14px}.modal-actions button{font-size:14px}.form-grid .help{font-size:12px}
 @media(max-width:600px){#drag-destinations{padding:8px;gap:4px;bottom:12px}#drag-destinations button{font-size:9px}}
