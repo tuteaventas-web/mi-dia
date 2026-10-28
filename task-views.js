@@ -5,7 +5,7 @@ export function inPlanningView(t,view,{day=today(),selectedWeek=week(day),select
   if(view==='done')return t.state==='Completada';
   if(t.state==='Completada'&&t.archivedAt&&!includeArchived)return false;
   if(view==='today')return inDailyScope(t,day);
-  if(view==='week')return t.week===week(selectedWeek);
+  if(view==='week')return selectedWeek?t.week===week(selectedWeek):!!t.project||!!t.week;
   if(view==='pending')return (!t.scheduled&&!t.week)||!!(t.week&&t.week<week(day))||!!(t.scheduled&&t.scheduled<day);
   if(view==='area')return !!t.area&&(!selectedArea||t.area===selectedArea);
   return false;

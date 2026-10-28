@@ -28,6 +28,11 @@ test('reordering changes priority and persists unique order without losing relat
 test('restoring by reorder preserves checklist',()=>{
  const a=task({title:'A',subtasks:[{done:false}]}),b=task({title:'B'});complete(a);reorderBefore([a,b],a,b);assert.equal(a.state,'Pendiente');assert.equal(a.completed,null);assert.equal(a.subtasks[0].done,false);
 });
+test('weekly view can show every planned week when no week filter is selected',()=>{
+ const tasks=[task({week:'2026-10-19'}),task({week:'2026-10-26'}),task({project:'p'}),task({week:''})];
+ assert.equal(tasks.filter(t=>inPlanningView(t,'week',{selectedWeek:''})).length,3);
+ assert.equal(tasks.filter(t=>inPlanningView(t,'week',{selectedWeek:'2026-10-26'})).length,1);
+});
 
 test('clearing preserves daily progress and restoring or duplicating resets archival status',()=>{
  const a=task({title:'A',scheduled:context.day});complete(a);const [archived]=archiveCompleted([a],[a.id]);
