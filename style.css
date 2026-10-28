@@ -63,6 +63,7 @@
 .dragging-tasks #nav{position:sticky;top:16px;z-index:2}
 .project-row[draggable=true]{cursor:grab;position:relative;padding-left:28px}.project-row[draggable=true]:active{cursor:grabbing}.project-grip{position:absolute;left:2px;top:16px;color:#8fa49a;font-size:18px}.project-dragging{opacity:.4}
 .task-edit-button{width:32px;height:32px;padding:7px;border:0;background:transparent;color:#789088;flex:0 0 auto}.task-edit-button svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.task-edit-button:hover{background:#edf5f0;color:var(--green)}
+.task-duplicate-button{width:32px;height:32px;padding:7px;border:0;background:transparent;color:#789088;flex:0 0 auto}.task-duplicate-button svg{display:block;width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.task-duplicate-button:hover{background:#edf5f0;color:var(--green)}
 .project-toggle{border:0;background:transparent;padding:4px 6px;font-size:19px;line-height:1;color:#52675e;align-self:flex-start}.project-toggle:hover{background:#edf5f0;color:var(--green)}.weekly-project-block.is-collapsed .weekly-project-list{display:none}.weekly-project-block.is-collapsed{padding-bottom:0}
 
 /* Acceso local por cuentas */
