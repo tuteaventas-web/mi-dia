@@ -5,7 +5,7 @@ import {AREAS,STATES,PRIORITIES,today,week,uid,task,complete,restore,move,duplic
 import {scene,runner} from './art.js?v=20261027.15';
 import {ACCOUNTS_KEY,SESSION_KEY,accountDataKey,ensureRegistry,hashPin,makeAccount,normalizeName,verifyAccount} from './accounts.js?v=20261027.15';
 import {CLOUD_TOKEN,cloudAccounts,cloudLogin,cloudData,cloudSave,cloudMigrate,cloudUpsert,cloudDelete} from './cloud.js?v=20261028.20';
-import {ensurePurchases,renderPurchases} from './purchases.js?v=20261029.3';
+import {ensurePurchases,renderPurchases} from './purchases.js?v=20261029.4';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const projectsInline=document.createElement('button');projectsInline.id='projects-inline';projectsInline.className='projects-inline';projectsInline.textContent='▦ Proyectos';projectsInline.hidden=true;projectsInline.onclick=()=>projectDialog();$('#new-task').before(projectsInline);
 let cloudOnline=false,cloudToken=sessionStorage.getItem(CLOUD_TOKEN)||'',localRegistry=await ensureRegistry(localStorage),cloudRegistry=null,registry=localRegistry;
