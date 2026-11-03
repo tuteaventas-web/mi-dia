@@ -1,5 +1,5 @@
 import {projectProgress,finishProject,restoreProject} from './project-progress.js?v=20261103.2';
-import {dailyReport} from './report.js?v=20261027.15';
+import {dailyReport} from './report.js?v=20261103.1';
 import {inPlanningView,reorderBefore,archiveCompleted,viewProgress} from './task-views.js?v=20261027.15';
 import {AREAS,STATES,PRIORITIES,today,week,uid,task,complete,restore,move,duplicate,validate} from './model.js?v=20261027.15';
 import {scene,runner} from './art.js?v=20261027.15';
