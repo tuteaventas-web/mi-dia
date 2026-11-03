@@ -97,6 +97,7 @@
 .weekly-project-block{padding:10px 12px}
 .weekly-project-block>header{grid-template-columns:28px 28px minmax(0,1fr) minmax(100px,180px);gap:8px;padding:0 0 8px;min-height:30px}
 .weekly-project-block h2{font-size:14px;margin:0 0 2px}
+.weekly-project-block>header>div:not(.weekly-project-meter){display:flex;align-items:center;gap:8px;min-width:0}.weekly-project-block>header>div:not(.weekly-project-meter) h2{margin:0}.weekly-project-block>header>div:not(.weekly-project-meter)>span{white-space:nowrap}
 .weekly-project-list .task{margin:5px 0}
 .weekly-project-block .task-row{padding:10px 12px;gap:10px}
 .weekly-project-block .task-meta{margin-top:4px}
