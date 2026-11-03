@@ -32,7 +32,9 @@ export function validateRegistry(value){
 
 export async function ensureRegistry(storage){
   const raw=storage.getItem(ACCOUNTS_KEY);
-  const registry=raw?validateRegistry(JSON.parse(raw)):await createRegistry();
+  let registry;
+  try{registry=raw?validateRegistry(JSON.parse(raw)):await createRegistry();}
+  catch{registry=await createRegistry();storage.setItem(ACCOUNTS_KEY,JSON.stringify(registry));}
   if(!raw)storage.setItem(ACCOUNTS_KEY,JSON.stringify(registry));
   const legacy=storage.getItem(LEGACY_DATA_KEY),adminKey=accountDataKey('admin');
   if(legacy&&!storage.getItem(adminKey))storage.setItem(adminKey,legacy);

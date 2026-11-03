@@ -24,3 +24,11 @@ test('advisor accounts require name and four digit PIN',async()=>{
   await assert.rejects(()=>makeAccount({id:'x',name:'X',pin:'12'}),/4 dígitos/);
   assert.equal(validateRegistry({version:1,accounts:[{...(await createRegistry()).accounts[0]}]}).version,1);
 });
+
+test('invalid public-only account cache is repaired automatically',async()=>{
+  const map=new Map([['mi-jornada-accounts-v1',JSON.stringify({version:1,accounts:[{id:'admin',name:'Administrador',role:'admin',order:0}]})]]);
+  const storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v),removeItem:k=>map.delete(k)};
+  const registry=await ensureRegistry(storage);
+  assert.equal((await verifyAccount(registry,'admin','1608')).id,'admin');
+  assert.match(map.get('mi-jornada-accounts-v1'),/"pinHash"/);
+});
