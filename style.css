@@ -91,4 +91,14 @@
 .projects-inline{margin-left:auto!important;background:#eef2fb;border-color:#cbd7ed;color:#3f5f91;font-weight:700;white-space:nowrap}.projects-inline:hover{background:#e1e9f8}.projects-inline:not([hidden])+#new-task{margin-left:0}[data-project-view]{display:none!important}
 @media(max-width:600px){.weekly-project-block{padding:11px}.weekly-project-block>header{grid-template-columns:1fr;gap:8px}}
 .weekly-project-block>header{grid-template-columns:28px minmax(0,1fr) minmax(120px,220px);gap:10px}.project-toggle{width:28px;height:28px;min-width:28px;max-width:28px;padding:0;display:inline-grid;place-items:center;border:1px solid var(--border);border-radius:6px;font-size:16px;justify-self:start}.weekly-project-block.is-collapsed>header{padding-bottom:0}@media(max-width:600px){.weekly-project-block>header{grid-template-columns:28px minmax(0,1fr);gap:8px}.weekly-project-meter{grid-column:2}}
+
+/* Bloques semanales compactos: controles, título y avance en una sola fila. */
+.weekly-projects{gap:10px}
+.weekly-project-block{padding:10px 12px}
+.weekly-project-block>header{grid-template-columns:28px 28px minmax(0,1fr) minmax(100px,180px);gap:8px;padding:0 0 8px;min-height:30px}
+.weekly-project-block h2{font-size:14px;margin:0 0 2px}
+.weekly-project-list .task{margin:5px 0}
+.weekly-project-block .task-row{padding:10px 12px;gap:10px}
+.weekly-project-block .task-meta{margin-top:4px}
+@media(max-width:600px){.weekly-project-block>header{grid-template-columns:28px 28px minmax(0,1fr);gap:6px}.weekly-project-meter{grid-column:3}.weekly-project-block{padding:9px}.weekly-project-block .task-row{padding:9px 8px}}
 @media(max-width:600px){#drag-destinations{padding:8px;gap:4px;bottom:12px}#drag-destinations button{font-size:9px}}
