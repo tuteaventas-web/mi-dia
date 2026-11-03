@@ -9,12 +9,13 @@ import {ensurePurchases,renderPurchases} from './purchases.js?v=20261029.5';
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const projectsInline=document.createElement('button');projectsInline.id='projects-inline';projectsInline.className='projects-inline';projectsInline.textContent='▦ Proyectos';projectsInline.hidden=true;projectsInline.onclick=()=>projectDialog();$('#new-task').before(projectsInline);
 let cloudOnline=false,cloudToken=sessionStorage.getItem(CLOUD_TOKEN)||'',localRegistry=await ensureRegistry(localStorage),cloudRegistry=null,registry=localRegistry;
-try{cloudRegistry=await cloudAccounts();const merged=[...cloudRegistry.accounts];for(const local of localRegistry.accounts)if(!merged.some(a=>a.id===local.id))merged.push(local);registry={version:1,accounts:merged};cloudOnline=true;}catch{}
+function renderLoginAccounts(select){const selected=select.value;select.innerHTML='<option value="">Selecciona un usuario</option>'+[...registry.accounts].sort((a,b)=>a.order-b.order||a.name.localeCompare(b.name)).map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');if(registry.accounts.some(a=>a.id===selected))select.value=selected;}
+const cloudRegistryPromise=cloudAccounts().then(remote=>{cloudRegistry=remote;const merged=[...remote.accounts];for(const local of localRegistry.accounts)if(!merged.some(a=>a.id===local.id))merged.push(local);registry={version:1,accounts:merged};cloudOnline=true;localStorage.setItem(ACCOUNTS_KEY,JSON.stringify(registry));const select=$('#login-user');if(select&&!$('#login-screen').hidden)renderLoginAccounts(select);return remote;}).catch(()=>null);
 async function requireLogin(){
   const session=sessionStorage.getItem(SESSION_KEY),saved=registry.accounts.find(a=>a.id===session);
   if(saved&&(!cloudOnline||cloudToken)){document.body.classList.remove('auth-pending');$('#login-screen').hidden=true;return saved;}
   const screen=$('#login-screen'),form=$('#login-form'),select=$('#login-user'),fields=[...document.querySelectorAll('.pin-fields input')],error=$('#login-error');
-  select.innerHTML='<option value="">Selecciona un usuario</option>'+[...registry.accounts].sort((a,b)=>a.order-b.order||a.name.localeCompare(b.name)).map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join('');
+  renderLoginAccounts(select);
   screen.hidden=false;document.body.classList.add('auth-pending');
   fields.forEach((field,index)=>{
     field.oninput=()=>{field.value=field.value.replace(/\D/g,'').slice(-1);if(field.value)fields[index+1]?.focus();error.textContent='';};
