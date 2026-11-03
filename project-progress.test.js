@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {projectProgress} from './project-progress.js';
+import {projectProgress,finishProject,restoreProject} from './project-progress.js';
 test('all projects appear including empty and completed projects',()=>{
  const projects=[{id:'a',name:'A',state:'Activo'},{id:'b',name:'B',state:'Completado'}];
  const tasks=[{id:'1',project:'a',state:'Completada'},{id:'2',project:'a',state:'En espera'},{id:'3',project:'other',state:'Completada'}];
@@ -10,4 +10,9 @@ test('progress counts each main task once regardless of date, view or checklist'
  const a={id:'1',project:'p',state:'Completada',scheduled:'2026-01-01'},b={id:'2',project:'p',state:'Pendiente',scheduled:'2027-01-01',subtasks:[{done:true}]};
  let result=projectProgress([{id:'p'}],[a,a,b])[0];assert.equal(result.total,2);assert.equal(result.percent,50);
  a.state='Pendiente';result=projectProgress([{id:'p'}],[a,b])[0];assert.equal(result.percent,0);
+});
+test('a project can move to finished and be restored without changing its tasks',()=>{
+ const project={id:'p',state:'Activo'},tasks=[{id:'1',project:'p',state:'Pendiente'}];
+ finishProject(project,'2026-11-03T10:00:00.000Z');assert.equal(project.state,'Completado');assert.equal(project.completedAt,'2026-11-03T10:00:00.000Z');assert.equal(tasks[0].state,'Pendiente');
+ restoreProject(project,'2026-11-03T11:00:00.000Z');assert.equal(project.state,'Activo');assert.equal(project.completedAt,undefined);assert.equal(tasks[0].state,'Pendiente');
 });

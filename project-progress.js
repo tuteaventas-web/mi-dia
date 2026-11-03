@@ -5,3 +5,5 @@ export function projectProgress(projects,tasks){
   return {...project,total,done,percent:total?done/total*100:0};
  });
 }
+export function finishProject(project,now=new Date().toISOString()){project.state='Completado';project.completedAt=now;project.updated=now;return project;}
+export function restoreProject(project,now=new Date().toISOString()){project.state='Activo';delete project.completedAt;project.updated=now;return project;}
