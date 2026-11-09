@@ -103,3 +103,29 @@
 .weekly-project-block .task-meta{margin-top:4px}
 @media(max-width:600px){.weekly-project-block>header{grid-template-columns:28px 28px minmax(0,1fr);gap:6px}.weekly-project-meter{grid-column:3}.weekly-project-block{padding:9px}.weekly-project-block .task-row{padding:9px 8px}}
 @media(max-width:600px){#drag-destinations{padding:8px;gap:4px;bottom:12px}#drag-destinations button{font-size:9px}}
+
+/* Cabeceras de proyecto con jerarquía clara y progreso legible. */
+.weekly-project-block>header{grid-template-columns:28px 28px minmax(0,1fr) minmax(150px,190px);gap:10px;align-items:center;padding:2px 2px 12px}
+.weekly-project-heading{display:grid!important;gap:3px;min-width:0}
+.weekly-project-heading h2{font-size:15px;line-height:1.3;overflow-wrap:anywhere}
+.weekly-project-heading>span{font-size:11px!important;line-height:1.4;color:#84958c!important;white-space:normal!important}
+.weekly-project-meter{height:7px;align-self:center;background:#edf2ee;border-radius:99px}
+.weekly-project-meter span{background:linear-gradient(90deg,#71b18b,#398766);border-radius:inherit;transition:width .25s ease}
+.weekly-project-block .task{border-color:#e7eeea;border-radius:11px;transition:border-color .15s ease,box-shadow .15s ease}
+.weekly-project-block .task:hover{border-color:#cbdcd1;box-shadow:0 3px 12px #274d3610}
+.weekly-project-block .task-row{min-height:58px;padding:11px 14px;gap:11px}
+.weekly-project-block .task-main{align-self:center}
+.weekly-project-block .task-title{line-height:1.45}
+.weekly-project-block .task-meta{align-items:center;line-height:1.4}
+.weekly-project-block .badge{padding:5px 8px;font-size:10px}
+.weekly-project-block .task-edit-button,.weekly-project-block .task-duplicate-button{width:30px;height:30px;padding:7px;border-radius:7px}
+.weekly-project-block .menu-button{width:30px;height:30px;border-radius:7px}
+@media(max-width:600px){.weekly-project-block>header{grid-template-columns:26px 26px minmax(0,1fr);gap:7px;padding-bottom:10px}.weekly-project-block>header .weekly-project-meter{grid-column:3;margin-top:2px}.weekly-project-heading h2{font-size:14px}.weekly-project-block .task-row{gap:7px;padding:10px 8px;flex-wrap:wrap}.weekly-project-block .task-main{flex:1 1 calc(100% - 100px);order:3}.weekly-project-block .drag-handle{order:1}.weekly-project-block .task-row input[type=checkbox]{order:2}.weekly-project-block .badge{order:4;margin-left:auto}.weekly-project-block .task-edit-button,.weekly-project-block .task-duplicate-button,.weekly-project-block .menu-button{order:5;width:28px;height:28px}}
+/* El grupo sin proyecto no tiene asa de arrastre; recupera esa columna para el título. */
+.weekly-project-block[data-project-block=""]>header{grid-template-columns:28px minmax(0,1fr) minmax(150px,190px)}
+@media(max-width:600px){.weekly-project-block[data-project-block=""]>header{grid-template-columns:26px minmax(0,1fr)}.weekly-project-block[data-project-block=""]>header .weekly-project-meter{grid-column:2}}
+/* El bloque sin proyecto mantiene su nombre en una sola línea y sus controles alineados. */
+.weekly-project-block[data-project-block=""] .weekly-project-heading{display:flex!important;align-items:center;gap:8px;min-width:0;white-space:nowrap}
+.weekly-project-block[data-project-block=""] .weekly-project-heading h2{white-space:nowrap;overflow:visible;overflow-wrap:normal}
+.weekly-project-block[data-project-block=""] .weekly-project-heading>span{white-space:nowrap!important}
+@media(max-width:600px){.weekly-project-block[data-project-block=""] .weekly-project-heading{display:block!important;white-space:normal}.weekly-project-block[data-project-block=""] .weekly-project-heading h2{white-space:normal;overflow-wrap:anywhere}.weekly-project-block[data-project-block=""] .weekly-project-heading>span{display:block;margin-top:2px}}
